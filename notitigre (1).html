@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotitigreMontessori - Las Noticias Llegan Aca</title>
+    <link rel="icon" href="data:image/png;base64,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" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4a5fd9;
+            --secondary: #6b7ce8;
+            --bg: #0f1419;
+            --surface: #1a1f2e;
+            --text: #e0e0e0;
+            --accent: #ff6b35;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg) 0%, #1a2a4a 100%);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 2px solid rgba(107, 124, 232, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 24px;
+        }
+
+        .header-text h1 {
+            font-size: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .header-text p {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 2px solid rgba(107, 124, 232, 0.3);
+            color: var(--text);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid rgba(107, 124, 232, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            group: card;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 16px 40px rgba(74, 93, 217, 0.2);
+        }
+
+        .card-thumb {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, rgba(74, 93, 217, 0.2), rgba(255, 107, 53, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-thumb img,
+        .card-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-type {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .card-play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .card:hover .card-play {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        .card-title {
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: rgba(224, 224, 224, 0.7);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border: 1px solid rgba(107, 124, 232, 0.3);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 31, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(107, 124, 232, 0.2);
+            z-index: 10;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .player-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .video-player {
+            width: 100%;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        .fullscreen-img {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .fullscreen-img.active {
+            display: flex;
+        }
+
+        .fullscreen-img img {
+            max-width: 100%;
+            max-height: 100vh;
+            border-radius: 8px;
+        }
+
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-title {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .modal-desc {
+            color: rgba(224, 224, 224, 0.8);
+            line-height: 1.8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: rgba(224, 224, 224, 0.6);
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(74, 93, 217, 0.3);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(224, 224, 224, 0.5);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 16px;
+            }
+
+            .header-text h1 {
+                font-size: 24px;
+            }
+
+            .filters {
+                flex-wrap: wrap;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <div class="logo-img">NT</div>
+                <div class="header-text">
+                    <h1>NotitigreMontessori</h1>
+                    <p>Las Noticias Llegan Aca</p>
+                </div>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="video">Videos</button>
+                <button class="filter-btn" data-filter="diario">Diarios</button>
+            </div>
+        </header>
+
+        <!-- Grid -->
+        <div class="grid" id="grid"></div>
+    </div>
+
+    <!-- Modal Reproductor -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="flex:1;"></div>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Imagen -->
+    <div class="fullscreen-img" id="fullscreenImg">
+        <button class="fullscreen-close" onclick="closeFullscreen()">&times;</button>
+        <img id="fullscreenImgContent" alt="">
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://flkjwpcypihdkiyblucs.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsa2p3cGN5cGloZGtpeWJsdWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxMDM2MjMsImV4cCI6MjA5ODY3OTYyM30.Zevico24gkdO9-d8xOWKFSRsKt_npHef4F2OFCR5DsU';
+
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let contenido = [];
+        let filtroActivo = 'todos';
+
+        const grid = document.getElementById('grid');
+        const modal = document.getElementById('modal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        // Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                filtroActivo = e.target.dataset.filter;
+                renderGrid();
+            });
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        async function loadContenido() {
+            grid.innerHTML = '<div class="loading"></div>';
+
+            try {
+                const { data, error } = await supabase
+                    .from('contenido')
+                    .select('*')
+                    .eq('estado', 'publicado')
+                    .order('creado_en', { ascending: false });
+
+                if (error) throw error;
+
+                contenido = data || [];
+                renderGrid();
+            } catch (err) {
+                grid.innerHTML = `<div class="empty"><div class="empty-icon">❌</div><p>Error: ${err.message}</p></div>`;
+                console.error('Error loading contenido:', err);
+            }
+        }
+
+        function renderGrid() {
+            const filtrado = filtroActivo === 'todos' 
+                ? contenido 
+                : contenido.filter(c => c.tipo === filtroActivo);
+
+            if (filtrado.length === 0) {
+                grid.innerHTML = '<div class="empty"><div class="empty-icon">📭</div><p>No hay contenido disponible</p></div>';
+                return;
+            }
+
+            grid.innerHTML = filtrado.map(item => `
+                <div class="card" onclick="openModal('${item.id}')">
+                    <div class="card-thumb">
+                        ${item.tipo === 'video' 
+                            ? `<video src="${item.url_archivo}" style="width:100%; height:100%; object-fit:cover;"></video>`
+                            : `<img src="${item.imagenes?.[0] || item.url_archivo}" alt="${item.titulo}">`
+                        }
+                        <div class="card-type">${item.tipo === 'video' ? '📹' : '📷'}</div>
+                        <div class="card-play">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${item.titulo}</div>
+                        <div class="card-desc">${item.descripcion}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function openModal(id) {
+            const item = contenido.find(c => c.id === id);
+            if (!item) return;
+
+            const modalBody = document.getElementById('modalBody');
+
+            let content = `<h2 class="modal-title">${item.titulo}</h2>`;
+            content += `<p class="modal-desc">${item.descripcion}</p><br>`;
+
+            if (item.tipo === 'video') {
+                content += `<div class="player-container">
+                    <video class="video-player" controls>
+                        <source src="${item.url_archivo}" type="video/mp4">
+                    </video>
+                </div>`;
+            } else {
+                if (item.imagenes && item.imagenes.length > 0) {
+                    content += `<div class="image-gallery">`;
+                    content += item.imagenes.map(img => 
+                        `<img class="gallery-img" src="${img}" onclick="openFullscreen('${img}')" alt="diario">`
+                    ).join('');
+                    content += `</div>`;
+                }
+            }
+
+            modalBody.innerHTML = content;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openFullscreen(imageSrc) {
+            document.getElementById('fullscreenImgContent').src = imageSrc;
+            document.getElementById('fullscreenImg').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenImg').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeFullscreen();
+            }
+        });
+
+        // Cargar al inicio
+        loadContenido();
+    </script>
+</body>
+</html>
