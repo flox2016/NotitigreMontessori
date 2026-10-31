@@ -6,56 +6,31 @@
 <title>NotitigreMontessori - Admin</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #1e3c72;
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
-  }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e3c72; min-height: 100vh; padding: 20px; color: #333; }
   .hidden { display: none !important; }
-
-  /* Login */
-  .login {
-    min-height: calc(100vh - 40px);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .login-box {
-    background: white; padding: 30px; border-radius: 15px;
-    width: 100%; max-width: 360px; text-align: center;
-  }
+  .login { min-height: calc(100vh - 40px); display: flex; align-items: center; justify-content: center; }
+  .login-box { background: white; padding: 30px; border-radius: 15px; width: 100%; max-width: 360px; text-align: center; }
   .login-box h2 { color: #1e3c72; margin-bottom: 18px; }
   .login-box input { width: 100%; padding: 12px; font-size: 18px; border: 2px solid #1e3c72; border-radius: 8px; text-align: center; }
   .login-box button { margin-top: 14px; width: 100%; padding: 12px; font-size: 16px; background: #1e3c72; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
   .login-error { color: #d33; margin-top: 10px; font-size: 14px; min-height: 18px; }
-
-  /* Header */
   .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
   .header h1 { color: white; font-size: 26px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
   .header img { width: 70px; height: 70px; object-fit: contain; border-radius: 50%; background: white; padding: 4px; }
-
-  /* Columnas */
   .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .panel { background: white; border-radius: 12px; padding: 20px; }
   .panel h2 { color: #1e3c72; border-bottom: 2px solid #1e3c72; padding-bottom: 8px; margin-bottom: 14px; }
   .field { margin-bottom: 12px; }
   .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #1e3c72; }
-  .field input[type=text], .field textarea {
-    width: 100%; padding: 10px; border: 1px solid #bbb; border-radius: 6px; font-size: 15px; font-family: inherit;
-  }
+  .field input[type=text], .field textarea { width: 100%; padding: 10px; border: 1px solid #bbb; border-radius: 6px; font-size: 15px; font-family: inherit; }
   .field textarea { min-height: 70px; resize: vertical; }
   .field input[type=file] { font-size: 14px; }
   .hint { font-size: 12px; color: #777; margin-top: 3px; }
-  .btn {
-    width: 100%; padding: 12px; font-size: 16px; background: #1e3c72; color: white;
-    border: none; border-radius: 8px; cursor: pointer; font-weight: 600;
-  }
+  .btn { width: 100%; padding: 12px; font-size: 16px; background: #1e3c72; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
   .btn:disabled { background: #999; cursor: not-allowed; }
   .status { font-size: 14px; margin-top: 10px; min-height: 18px; }
   .status.ok { color: #1a7f37; }
   .status.err { color: #d33; }
-
-  /* Lista */
   .list-wrap { background: white; border-radius: 12px; padding: 20px; margin-top: 20px; }
   .list-wrap h2 { color: #1e3c72; margin-bottom: 14px; }
   .item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; }
@@ -68,15 +43,15 @@
   .tag.diario { background: #27ae60; }
   .del { background: #ff6b6b; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
   .empty { color: #888; text-align: center; padding: 20px; }
-
-  @media (max-width: 800px) {
-    .columns { grid-template-columns: 1fr; }
-  }
+  .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; margin-top: 8px; }
+  .preview-item { position: relative; }
+  .preview-item img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; display: block; }
+  .preview-item button { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; border: none; background: #ff6b6b; color: white; cursor: pointer; font-size: 13px; line-height: 22px; text-align: center; }
+  @media (max-width: 800px) { .columns { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login" id="loginScreen">
   <div class="login-box">
     <h2>Ingresar</h2>
@@ -86,7 +61,6 @@
   </div>
 </div>
 
-<!-- PANEL -->
 <div id="adminScreen" class="hidden">
   <div class="header">
     <h1>NotitigreMontessori · Admin</h1>
@@ -94,48 +68,26 @@
   </div>
 
   <div class="columns">
-    <!-- Subir Video -->
     <div class="panel">
       <h2>Subir Video</h2>
-      <div class="field">
-        <label>Logo del video</label>
-        <input type="file" id="vLogo" accept="image/*">
-      </div>
-      <div class="field">
-        <label>Nombre</label>
-        <input type="text" id="vTitulo" placeholder="Nombre del video">
-      </div>
-      <div class="field">
-        <label>Descripción</label>
-        <textarea id="vDesc" placeholder="Descripción"></textarea>
-      </div>
-      <div class="field">
-        <label>Archivo de video</label>
-        <input type="file" id="vFile" accept="video/*">
-      </div>
+      <div class="field"><label>Logo del video</label><input type="file" id="vLogo" accept="image/*"></div>
+      <div class="field"><label>Nombre</label><input type="text" id="vTitulo" placeholder="Nombre del video"></div>
+      <div class="field"><label>Descripción</label><textarea id="vDesc" placeholder="Descripción"></textarea></div>
+      <div class="field"><label>Archivo de video</label><input type="file" id="vFile" accept="video/*"></div>
       <button class="btn" id="vBtn">Agregar Video</button>
       <div class="status" id="vStatus"></div>
     </div>
 
-    <!-- Subir Diario -->
     <div class="panel">
       <h2>Subir Diario</h2>
-      <div class="field">
-        <label>Logo del diario</label>
-        <input type="file" id="dLogo" accept="image/*">
-      </div>
-      <div class="field">
-        <label>Nombre</label>
-        <input type="text" id="dTitulo" placeholder="Nombre del diario">
-      </div>
-      <div class="field">
-        <label>Descripción</label>
-        <textarea id="dDesc" placeholder="Descripción"></textarea>
-      </div>
+      <div class="field"><label>Logo del diario</label><input type="file" id="dLogo" accept="image/*"></div>
+      <div class="field"><label>Nombre</label><input type="text" id="dTitulo" placeholder="Nombre del diario"></div>
+      <div class="field"><label>Descripción</label><textarea id="dDesc" placeholder="Descripción"></textarea></div>
       <div class="field">
         <label>Imágenes (máximo 5)</label>
-        <input type="file" id="dFiles" accept="image/*" multiple>
-        <div class="hint">Podés elegir hasta 5 imágenes.</div>
+        <input type="file" id="dFilesInput" accept="image/*" multiple>
+        <div class="hint" id="dContador">0 de 5 imágenes</div>
+        <div class="preview-grid" id="dPreview"></div>
       </div>
       <button class="btn" id="dBtn">Agregar Diario</button>
       <div class="status" id="dStatus"></div>
@@ -155,7 +107,6 @@ const PASSWORD = '11011';
 const MAX_IMAGENES = 5;
 const HDRS = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
 
-// ---------- Login ----------
 function entrar() {
   if (document.getElementById('passInput').value === PASSWORD) {
     document.getElementById('loginScreen').classList.add('hidden');
@@ -168,7 +119,6 @@ function entrar() {
 document.getElementById('loginBtn').addEventListener('click', entrar);
 document.getElementById('passInput').addEventListener('keydown', e => { if (e.key === 'Enter') entrar(); });
 
-// ---------- Helpers ----------
 function setStatus(id, msg, tipo) {
   const el = document.getElementById(id);
   el.textContent = msg;
@@ -176,8 +126,7 @@ function setStatus(id, msg, tipo) {
 }
 
 function nombreSeguro(nombre) {
-  const limpio = nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-zA-Z0-9._-]/g, '_');
+  const limpio = nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9._-]/g, '_');
   return `${Date.now()}_${Math.random().toString(36).slice(2, 7)}_${limpio}`;
 }
 
@@ -201,16 +150,13 @@ async function insertarFila(fila) {
   if (!res.ok) throw new Error('Tabla contenido: HTTP ' + res.status);
 }
 
-// ---------- Subir Video ----------
 document.getElementById('vBtn').addEventListener('click', async () => {
   const titulo = document.getElementById('vTitulo').value.trim();
   const desc = document.getElementById('vDesc').value.trim();
   const logo = document.getElementById('vLogo').files[0];
   const video = document.getElementById('vFile').files[0];
   const btn = document.getElementById('vBtn');
-
   if (!titulo || !video) return setStatus('vStatus', 'Falta nombre o archivo de video', 'err');
-
   btn.disabled = true;
   try {
     setStatus('vStatus', 'Subiendo video...');
@@ -218,7 +164,7 @@ document.getElementById('vBtn').addEventListener('click', async () => {
     const urlLogo = logo ? await subirArchivo('logos', logo) : null;
     await insertarFila({ titulo, descripcion: desc, tipo: 'video', url_archivo: urlVideo, logo_url: urlLogo, imagenes: [], estado: 'publicado' });
     setStatus('vStatus', 'Video agregado ✓', 'ok');
-    ['vTitulo','vDesc'].forEach(id => document.getElementById(id).value = '');
+    ['vTitulo', 'vDesc'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('vLogo').value = '';
     document.getElementById('vFile').value = '';
     cargarLista();
@@ -230,17 +176,43 @@ document.getElementById('vBtn').addEventListener('click', async () => {
   }
 });
 
-// ---------- Subir Diario ----------
+let imagenesDiario = [];
+
+function renderPreview() {
+  const cont = document.getElementById('dPreview');
+  cont.innerHTML = imagenesDiario.map((f, i) => {
+    const url = URL.createObjectURL(f);
+    return `<div class="preview-item"><img src="${url}" alt=""><button type="button" data-i="${i}">×</button></div>`;
+  }).join('');
+  document.getElementById('dContador').textContent = `${imagenesDiario.length} de ${MAX_IMAGENES} imágenes`;
+}
+
+document.getElementById('dFilesInput').addEventListener('change', e => {
+  const nuevas = Array.from(e.target.files);
+  const espacio = MAX_IMAGENES - imagenesDiario.length;
+  if (nuevas.length > espacio) {
+    setStatus('dStatus', `Solo podés tener ${MAX_IMAGENES} imágenes. Se tomaron las primeras ${espacio}.`, 'err');
+  }
+  imagenesDiario = imagenesDiario.concat(nuevas.slice(0, espacio));
+  e.target.value = '';
+  renderPreview();
+});
+
+document.getElementById('dPreview').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-i]');
+  if (!btn) return;
+  imagenesDiario.splice(Number(btn.dataset.i), 1);
+  renderPreview();
+});
+
 document.getElementById('dBtn').addEventListener('click', async () => {
   const titulo = document.getElementById('dTitulo').value.trim();
   const desc = document.getElementById('dDesc').value.trim();
   const logo = document.getElementById('dLogo').files[0];
-  const files = Array.from(document.getElementById('dFiles').files);
+  const files = imagenesDiario.slice();
   const btn = document.getElementById('dBtn');
-
   if (!titulo || !files.length) return setStatus('dStatus', 'Falta nombre o imágenes', 'err');
   if (files.length > MAX_IMAGENES) return setStatus('dStatus', `Máximo ${MAX_IMAGENES} imágenes`, 'err');
-
   btn.disabled = true;
   try {
     setStatus('dStatus', 'Subiendo diario...');
@@ -249,9 +221,10 @@ document.getElementById('dBtn').addEventListener('click', async () => {
     const urlLogo = logo ? await subirArchivo('logos', logo) : null;
     await insertarFila({ titulo, descripcion: desc, tipo: 'diario', url_archivo: null, logo_url: urlLogo, imagenes: urlsImg, estado: 'publicado' });
     setStatus('dStatus', 'Diario agregado ✓', 'ok');
-    ['dTitulo','dDesc'].forEach(id => document.getElementById(id).value = '');
+    ['dTitulo', 'dDesc'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('dLogo').value = '';
-    document.getElementById('dFiles').value = '';
+    imagenesDiario = [];
+    renderPreview();
     cargarLista();
   } catch (err) {
     console.error(err);
@@ -261,7 +234,10 @@ document.getElementById('dBtn').addEventListener('click', async () => {
   }
 });
 
-// ---------- Lista ----------
+function escapar(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 async function cargarLista() {
   const cont = document.getElementById('lista');
   try {
@@ -271,12 +247,12 @@ async function cargarLista() {
     if (!items.length) { cont.innerHTML = '<div class="empty">Todavía no hay contenido</div>'; return; }
     cont.innerHTML = items.map(it => `
       <div class="item">
-        <img class="thumb" src="${it.logo_url || (it.imagenes && it.imagenes[0]) || ''}" alt="" onerror="this.style.visibility='hidden'">
+        <img class="thumb" src="${escapar(it.logo_url || (it.imagenes && it.imagenes[0]) || '')}" alt="" onerror="this.style.visibility='hidden'">
         <div class="info">
           <strong>${escapar(it.titulo)}<span class="tag ${it.tipo}">${it.tipo}</span></strong>
           <span>${escapar(it.descripcion || '')}</span>
         </div>
-        <button class="del" data-id="${it.id}">Borrar</button>
+        <button class="del" data-id="${escapar(it.id)}">Borrar</button>
       </div>`).join('');
   } catch (err) {
     cont.innerHTML = '<div class="empty">No se pudo cargar la lista</div>';
@@ -284,18 +260,12 @@ async function cargarLista() {
   }
 }
 
-function escapar(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
 document.getElementById('lista').addEventListener('click', async e => {
   const btn = e.target.closest('.del');
   if (!btn) return;
   if (!confirm('¿Borrar este contenido?')) return;
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/contenido?id=eq.${btn.dataset.id}`, {
-      method: 'DELETE', headers: HDRS
-    });
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/contenido?id=eq.${btn.dataset.id}`, { method: 'DELETE', headers: HDRS });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     cargarLista();
   } catch (err) {
