@@ -1,319 +1,230 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NotitigreMontessori</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1e3c72;
-      min-height: 100vh;
-      padding: 20px;
-      color: #333;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-
-    .header-spacer { width: 80px; }
-
-    .title {
-      color: white;
-      font-size: 26px;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      text-align: center;
-      flex: 1;
-    }
-
-    .logo {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      border-radius: 50%;
-      background: white;
-      padding: 4px;
-    }
-
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 10px 22px;
-      font-size: 16px;
-      border: 2px solid white;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .filter-btn:hover { background: rgba(255,255,255,0.2); }
-
-    .filter-btn.active {
-      background: white;
-      color: #1e3c72;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover { transform: translateY(-6px); }
-
-    .card-logo {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      background: #eee;
-      display: block;
-    }
-
-    .card-content { padding: 14px; }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1e3c72;
-      padding-bottom: 8px;
-      margin-bottom: 8px;
-      border-bottom: 2px solid #1e3c72;
-    }
-
-    .card-desc {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      color: white;
-      padding: 60px 20px;
-      font-size: 20px;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.active { display: flex; }
-
-    .modal-content {
-      background: white;
-      border-radius: 15px;
-      max-width: 900px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      padding: 30px;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 36px;
-      height: 36px;
-      border: none;
-      border-radius: 50%;
-      background: #ff6b6b;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .modal-title {
-      font-size: 26px;
-      color: #1e3c72;
-      margin: 10px 0 12px;
-    }
-
-    .modal-desc {
-      font-size: 16px;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .modal-video {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 600px) {
-      .title { font-size: 20px; }
-      .logo { width: 60px; height: 60px; }
-      .modal-content { padding: 20px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NotitigreMontessori</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1e3c72; min-height: 100vh; padding: 20px; color: #333;
+  }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+  .header-spacer { width: 80px; }
+  .title { color: white; font-size: 26px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); text-align: center; flex: 1; }
+  .logo { width: 80px; height: 80px; object-fit: contain; border-radius: 50%; background: white; padding: 4px; }
+  .filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 10px 22px; font-size: 16px; border: 2px solid white; background: transparent;
+    color: white; cursor: pointer; border-radius: 25px; font-weight: 600; transition: all 0.2s ease;
+  }
+  .filter-btn:hover { background: rgba(255,255,255,0.2); }
+  .filter-btn.active { background: white; color: #1e3c72; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.2s ease; }
+  .card:hover { transform: translateY(-6px); }
+  .card-logo { width: 100%; height: 180px; object-fit: contain; background: #eee; display: block; }
+  .card-content { padding: 14px; }
+  .card-title { font-size: 18px; font-weight: bold; color: #1e3c72; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 2px solid #1e3c72; }
+  .card-desc { font-size: 14px; color: #555; line-height: 1.5; }
+  .empty { grid-column: 1 / -1; text-align: center; color: white; padding: 60px 20px; font-size: 20px; }
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+  .modal.active { display: flex; }
+  .modal-content { background: white; border-radius: 15px; max-width: 900px; width: 100%; max-height: none; position: relative; padding: 30px; margin: auto; }
+  .modal-close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: none; border-radius: 50%; background: #ff6b6b; color: white; font-size: 20px; cursor: pointer; }
+  .modal-title { font-size: 26px; color: #1e3c72; margin: 10px 0 12px; }
+  .modal-desc { font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 20px; }
+  .modal-video { width: 100%; border-radius: 8px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .gallery img { width: 100%; height: auto; object-fit: contain; border-radius: 8px; display: block; }
+  .visor { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 2000; display: none; align-items: center; justify-content: center; }
+  .visor.active { display: flex; }
+  .visor img { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 6px; }
+  .visor-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border: none; border-radius: 50%; background: #ff6b6b; color: white; font-size: 22px; cursor: pointer; }
+  .visor-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: none; border-radius: 50%; background: rgba(255,255,255,0.25); color: white; font-size: 28px; cursor: pointer; }
+  .visor-nav:hover { background: rgba(255,255,255,0.45); }
+  .visor-prev { left: 12px; }
+  .visor-next { right: 12px; }
+  .visor-count { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: white; font-size: 15px; background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 12px; }
+  @media (max-width: 600px) {
+    .title { font-size: 20px; }
+    .logo { width: 60px; height: 60px; }
+    .modal-content { padding: 20px; }
+  }
+</style>
 </head>
 <body>
 
-  <div class="header">
-    <div class="header-spacer"></div>
-    <div class="title">NotitigreMontessori</div>
-    <img src="https://flkjwpcypihdkiyblucs.supabase.co/storage/v1/object/public/logos/notitigre-logo.png"
-         alt="Logo" class="logo"
-         onerror="this.style.display='none'">
+<div class="header">
+  <div class="header-spacer"></div>
+  <div class="title">NotitigreMontessori</div>
+  <img class="logo" src="https://flkjwpcypihdkiyblucs.supabase.co/storage/v1/object/public/logos/notitigre-logo.png" alt="Logo" onerror="this.style.display='none'">
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="todo">Todo</button>
+  <button class="filter-btn" data-filter="diario">Diario</button>
+  <button class="filter-btn" data-filter="video">Videos</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div id="modalMedia"></div>
   </div>
+</div>
 
-  <div class="filters">
-    <button class="filter-btn active" data-filter="todo">Todo</button>
-    <button class="filter-btn" data-filter="diario">Diario</button>
-    <button class="filter-btn" data-filter="video">Videos</button>
-  </div>
+<div class="visor" id="visor">
+  <button class="visor-close" id="visorClose">✕</button>
+  <button class="visor-nav visor-prev" id="visorPrev">‹</button>
+  <img id="visorImg" alt="">
+  <button class="visor-nav visor-next" id="visorNext">›</button>
+  <div class="visor-count" id="visorCount"></div>
+</div>
 
-  <div class="grid" id="grid"></div>
+<script>
+const SUPABASE_URL = 'https://flkjwpcypihdkiyblucs.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsa2p3cGN5cGloZGtpeWJsdWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxMDM2MjMsImV4cCI6MjA5ODY3OTYyM30.Zevico24gkdO9-d8xOWKFSRsKt_npHef4F2OFCR5DsU';
+const PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E';
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">✕</button>
-      <h2 class="modal-title" id="modalTitle"></h2>
-      <p class="modal-desc" id="modalDesc"></p>
-      <div id="modalMedia"></div>
-    </div>
-  </div>
+let contenido = [];
+let filtroActual = 'todo';
 
-  <script>
-    const SUPABASE_URL = 'https://flkjwpcypihdkiyblucs.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsa2p3cGN5cGloZGtpeWJsdWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxMDM2MjMsImV4cCI6MjA5ODY3OTYyM30.Zevico24gkdO9-d8xOWKFSRsKt_npHef4F2OFCR5DsU';
-    const PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E';
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
-    let contenido = [];
-    let filtroActual = 'todo';
-
-    function esc(s) {
-      return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-
-    async function cargarContenido() {
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/contenido?select=*&order=creado_en.desc`, {
-          headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-        });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        contenido = await res.json();
-        renderizar();
-      } catch (err) {
-        console.error('Error al cargar:', err);
-        document.getElementById('grid').innerHTML = '<div class="empty">No se pudo cargar el contenido</div>';
-      }
-    }
-
-    function renderizar() {
-      const grid = document.getElementById('grid');
-      const items = filtroActual === 'todo'
-        ? contenido
-        : contenido.filter(c => c.tipo === filtroActual);
-
-      if (!items.length) {
-        grid.innerHTML = '<div class="empty">Sin contenido en esta categoría</div>';
-        return;
-      }
-
-      grid.innerHTML = items.map(item => `
-        <div class="card" data-id="${esc(item.id)}">
-          <img class="card-logo" src="${esc(item.logo_url || PLACEHOLDER)}" alt="" onerror="this.src='${PLACEHOLDER}'">
-          <div class="card-content">
-            <div class="card-title">${esc(item.titulo)}</div>
-            <div class="card-desc">${esc(item.descripcion || '')}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function abrirModal(id) {
-      const item = contenido.find(c => c.id === id);
-      if (!item) return;
-
-      document.getElementById('modalTitle').textContent = item.titulo;
-      document.getElementById('modalDesc').textContent = item.descripcion || '';
-
-      let media = '';
-      if (item.tipo === 'video' && item.url_archivo) {
-        media = `<video class="modal-video" controls src="${esc(item.url_archivo)}"></video>`;
-      } else if (Array.isArray(item.imagenes) && item.imagenes.length) {
-        media = '<div class="gallery">' +
-          item.imagenes.map(img => `<img src="${esc(img)}" alt="">`).join('') +
-          '</div>';
-      }
-      document.getElementById('modalMedia').innerHTML = media;
-      document.getElementById('modal').classList.add('active');
-    }
-
-    function cerrarModal() {
-      document.getElementById('modal').classList.remove('active');
-      document.getElementById('modalMedia').innerHTML = '';
-    }
-
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        filtroActual = btn.dataset.filter;
-        renderizar();
-      });
+async function cargarContenido() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/contenido?select=*&order=creado_en.desc`, {
+      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
     });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    contenido = await res.json();
+    renderizar();
+  } catch (err) {
+    console.error(err);
+    document.getElementById('grid').innerHTML = '<div class="empty">No se pudo cargar el contenido</div>';
+  }
+}
 
-    document.getElementById('grid').addEventListener('click', e => {
-      const card = e.target.closest('.card');
-      if (card) abrirModal(card.dataset.id);
-    });
+function renderizar() {
+  const items = filtroActual === 'todo' ? contenido : contenido.filter(c => c.tipo === filtroActual);
+  const grid = document.getElementById('grid');
+  if (!items.length) { grid.innerHTML = '<div class="empty">Sin contenido en esta categoría</div>'; return; }
+  grid.innerHTML = items.map(item => `
+    <div class="card" data-id="${esc(item.id)}">
+      <img class="card-logo" src="${esc(item.logo_url || PLACEHOLDER)}" alt="" onerror="this.src='${PLACEHOLDER}'">
+      <div class="card-content">
+        <div class="card-title">${esc(item.titulo)}</div>
+        <div class="card-desc">${esc(item.descripcion || '')}</div>
+      </div>
+    </div>`).join('');
+}
 
-    document.getElementById('modalClose').addEventListener('click', cerrarModal);
-    document.getElementById('modal').addEventListener('click', e => {
-      if (e.target.id === 'modal') cerrarModal();
-    });
+function abrirModal(id) {
+  const item = contenido.find(c => c.id === id);
+  if (!item) return;
+  document.getElementById('modalTitle').textContent = item.titulo;
+  document.getElementById('modalDesc').textContent = item.descripcion || '';
+  let media = '';
+  if (item.tipo === 'video' && item.url_archivo) {
+    media = `<video class="modal-video" controls src="${esc(item.url_archivo)}"></video>`;
+  } else if (Array.isArray(item.imagenes) && item.imagenes.length) {
+    media = '<div class="gallery">' + item.imagenes.map((img, i) => `<img src="${esc(img)}" alt="" data-i="${i}" style="cursor:pointer">`).join('') + '</div>';
+  }
+  document.getElementById('modalMedia').innerHTML = media;
+  window._fotosActuales = Array.isArray(item.imagenes) ? item.imagenes : [];
+  document.getElementById('modal').classList.add('active');
+}
 
-    cargarContenido();
-  </script>
+function cerrarModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.getElementById('modalMedia').innerHTML = '';
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filtroActual = btn.dataset.filter;
+    renderizar();
+  });
+});
+
+document.getElementById('grid').addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (card) abrirModal(card.dataset.id);
+});
+document.getElementById('modalClose').addEventListener('click', cerrarModal);
+document.getElementById('modalMedia').addEventListener('click', e => {
+  const img = e.target.closest('img[data-i]');
+  if (img) abrirVisor(window._fotosActuales, Number(img.dataset.i));
+});
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') cerrarModal(); });
+
+
+let visorFotos = [];
+let visorIdx = 0;
+
+function mostrarFoto() {
+  document.getElementById('visorImg').src = visorFotos[visorIdx];
+  document.getElementById('visorCount').textContent = `${visorIdx + 1} / ${visorFotos.length}`;
+  const multi = visorFotos.length > 1;
+  document.getElementById('visorPrev').style.display = multi ? '' : 'none';
+  document.getElementById('visorNext').style.display = multi ? '' : 'none';
+  document.getElementById('visorCount').style.display = multi ? '' : 'none';
+}
+
+function abrirVisor(fotos, inicio = 0) {
+  visorFotos = fotos;
+  visorIdx = inicio;
+  mostrarFoto();
+  document.getElementById('visor').classList.add('active');
+}
+
+function cerrarVisor() {
+  document.getElementById('visor').classList.remove('active');
+  document.getElementById('visorImg').src = '';
+}
+
+document.getElementById('visorPrev').addEventListener('click', e => {
+  e.stopPropagation();
+  visorIdx = (visorIdx - 1 + visorFotos.length) % visorFotos.length;
+  mostrarFoto();
+});
+document.getElementById('visorNext').addEventListener('click', e => {
+  e.stopPropagation();
+  visorIdx = (visorIdx + 1) % visorFotos.length;
+  mostrarFoto();
+});
+document.getElementById('visorClose').addEventListener('click', cerrarVisor);
+document.getElementById('visor').addEventListener('click', e => { if (e.target.id === 'visor') cerrarVisor(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('visor').classList.contains('active')) return;
+  if (e.key === 'Escape') cerrarVisor();
+  if (e.key === 'ArrowLeft') document.getElementById('visorPrev').click();
+  if (e.key === 'ArrowRight') document.getElementById('visorNext').click();
+});
+
+// Deslizar con el dedo en celular
+let touchX = null;
+document.getElementById('visor').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('visor').addEventListener('touchend', e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 50 && visorFotos.length > 1) {
+    document.getElementById(dx < 0 ? 'visorNext' : 'visorPrev').click();
+  }
+  touchX = null;
+});
+
+cargarContenido();
+</script>
 </body>
 </html>
